@@ -1,0 +1,2 @@
+在ReportDetail中加入了Refresh()功能，以便重置数据页面，在客户端也增加了this.Refresh()函数。
+ColStyle中，增加了合并相同值的相邻行的属性IsMergeSameRow、IsMergeNullRow、IsMergeFollowPrevious

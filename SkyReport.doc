@@ -1,0 +1,2299 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Skyever.Report</name>
+    </assembly>
+    <members>
+        <member name="T:Skyever.Report.ReportBase">
+            <summary>
+            ReportCell 和 ReportDetail 的基类
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportBase.#cctor">
+            <summary>
+            静态构造函数，创建路径
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportBase.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportBase.SendClientMessage(System.String)">
+            <summary>
+            向客户端发送信息，将以对话框的形式弹出来
+            </summary>
+            <param name="Message"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportBase.OnPreRender(System.EventArgs)">
+            <summary>
+            向客户端输出之前
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportBase.CreateErrorButton(System.String)">
+            <summary>
+            创建出现错误时显示的工具条
+            </summary>
+            <param name="Msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportBase.Execute">
+            <summary>
+            强制汇总屏或细节屏的执行
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ReportBase._IsExecute">
+            <summary>
+            是否已经执行完毕
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportBase.ExplainArgument(System.String)">
+            <summary>
+            解释带参数的字符串
+            </summary>
+            <param name="Content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportBase.ExplainHtml(System.String)">
+            <summary>
+            解释带参数的HTML字符串
+            </summary>
+            <param name="Content"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.ReportBase.ScriptPath">
+            <summary>
+            客户端Js文件的路径
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportBase.DbConnection">
+            <summary>
+            数据链接
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportBase.DbCommand">
+            <summary>
+            命令执行对象
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportBase.Argument">
+            <summary>
+            参数组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportBase.IsExecute">
+            <summary>
+            是否已经执行完毕
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.Option">
+            <summary>
+            ReportCell和ReportDetail的选项
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.Option.ReadXml(System.String)">
+            <summary>
+            从XML文件中读取设置
+            </summary>
+            <param name="FileName"></param>
+        </member>
+        <member name="M:Skyever.Report.Option.WriteXml(System.String)">
+            <summary>
+            将当前的设置写入XML文件
+            </summary>
+            <param name="FileName"></param>
+        </member>
+        <member name="P:Skyever.Report.Option.IsSendScriptFile">
+            <summary>
+            是否向客户端发送Js文件（因为客户端操作的Js文件比较大，这样可以节约网络流量）
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.UserDefineStyle">
+            <summary>
+            ReportCell/ReportDetail：用户自定义样式
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ItemStyle">
+            <summary>
+            ReportCell：基本样式，用于其它样式的基类
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ItemStyle.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ItemStyle.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="Pattern">样式</param>
+        </member>
+        <member name="P:Skyever.Report.ItemStyle.Pattern">
+            <summary>
+            样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineStyle.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.UserDefineStyleGroup">
+            <summary>
+            ReportCell/ReportDetail：行的样式组
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ItemGroup">
+            <summary>
+            用于组合各种参数项的基类
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ItemGroup.myHashtable">
+            <summary>
+            用于组合各种参数项的集合类
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ItemGroup.GetKeys">
+            <summary>
+            获取键的组合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ItemGroup.GetItems">
+            <summary>
+            获取值的组合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ItemGroup.IsContainsKey(System.Object)">
+            <summary>
+            是否包含特定键
+            </summary>
+            <param name="Key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ItemGroup.GetEnumerator">
+            <summary>
+            枚举器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.ItemGroup.Count">
+            <summary>
+            组合中的项数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ItemGroup.ParentReport">
+            <summary>
+            所属的细节屏或汇总屏
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UserDefineStyleGroup.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UserDefineStyleGroup.Append(Skyever.Report.UserDefineStyle)">
+            <summary>
+            增加样式
+            </summary>
+            <param name="NewStyle">样式</param>
+        </member>
+        <member name="M:Skyever.Report.UserDefineStyleGroup.Remove(System.String)">
+            <summary>
+            删除样式
+            </summary>
+            <param name="Name">样式名称</param>
+        </member>
+        <member name="P:Skyever.Report.UserDefineStyleGroup.Item(System.String)">
+            <summary>
+            按索引读取样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineStyleGroup.Style">
+            <summary>
+            增加字段样式，（方便在ASPX页面中的操作）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineStyleGroup.It">
+            <summary>
+            增加字段样式，（方便在ASPX页面中的操作）
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.Argument">
+            <summary>
+            记录变量的每一项，变量是用一对大括号括起来的将来被实际值替换的值
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.Argument.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.Argument.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="Name"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="F:Skyever.Report.Argument.IsExplaining">
+            <summary>
+            标记是否正在转换中
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.Argument.ExplainValue">
+            <summary>
+            解释当前表达式的值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Argument.Value">
+            <summary>
+            变量的值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Argument.Name">
+            <summary>
+            变量的名字
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Argument.IsExpression">
+            <summary>
+            是否为表达式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Argument.Group">
+            <summary>
+            所属的变量组
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ArgumentGroup">
+            <summary>
+            变量的组合
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ArgumentGroup.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ArgumentGroup.Append(Skyever.Report.Argument)">
+            <summary>
+            添加一项
+            </summary>
+            <param name="myArgument"></param>
+        </member>
+        <member name="M:Skyever.Report.ArgumentGroup.Remove(System.String)">
+            <summary>
+            删除一项
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="M:Skyever.Report.ArgumentGroup.ExplainValues">
+            <summary>
+            将表达式转换为实际的值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ArgumentGroup.Option">
+            <summary>
+            方便在客户端添加项
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ArgumentGroup.Item(System.String)">
+            <summary>
+            通过索引查询参数值
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ReportCell">
+            <summary>
+            汇总屏，功能强大且高效的列表显示控件
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.Execute">
+            <summary>
+            强制执行操作，用于解决优先级问题
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.CommitClientMessage">
+            <summary>
+            根据客户端信息对数据库的插入、更新、删除数据的操作
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.Decode(System.String)">
+            <summary>
+            对字符串进行解码
+            </summary>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.ReplaceEncodeMsg(System.Text.RegularExpressions.Match)">
+            <summary>
+            对字符串进行解码所使用的委托参数
+            </summary>
+            <param name="myMatch"></param>
+        </member>
+        <member name="F:Skyever.Report.ReportCell.IsConnectionOpen">
+            <summary>
+            记录数据连接在开始的时候是否打开
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.GetSelectedRows">
+            <summary>
+            获取选定行的字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.OnInit(System.EventArgs)">
+            <summary>
+            初始化
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.InitializeComponent">
+            <summary>
+            	设计器支持所需的方法 - 不要使用代码编辑器
+            	修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.OnPreRender(System.EventArgs)">
+            <summary>
+            在输出HTML之前，注释一些在客户端要用到的脚本
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            向客户端输出HTML代码
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="F:Skyever.Report.ReportCell.ReplaceContentRegex">
+            <summary>
+            用于寻找表示变量的字符串
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.ReplaceParameter(System.Text.RegularExpressions.Match)">
+            <summary>
+            替换一些参数
+            </summary>
+            <param name="myMatch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.GetNavigation(System.String)">
+            <summary>
+            构建导航条
+            </summary>
+            <param name="Argument"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.GetPageHandle">
+            <summary>
+            构建页信息栏
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.GetPageMessage">
+            <summary>
+            构建页信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.GetPageInfo">
+            <summary>
+            获取页信息
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.GetContent">
+            <summary>
+            获取内容
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.ExplainHtml(System.String)">
+            <summary>
+            解释带参数的HTML代码
+            </summary>
+            <param name="Content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.ExplainArgument(System.String)">
+            <summary>
+            解释带参数的字符串
+            </summary>
+            <param name="Content"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Skyever.Report.ReportCell.MyValues">
+            <summary>
+            记录新值
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.CreateHtml(System.Data.IDataReader)">
+            <summary>
+            构建HTML代码
+            </summary>
+            <param name="myReader"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.WriteCellContent(System.Text.StringBuilder,System.String,Skyever.Report.ColStyle,System.String)">
+            <summary>
+            写入客户端 TD 值
+            </summary>
+            <param name="myContent"></param>
+            <param name="ContentHtml"></param>
+            <param name="CurColStyle"></param>
+            <param name="RowFlag"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.FireOnItemShowEvent">
+            <summary>
+            激发OnItemShow事件
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.GetStyle">
+            <summary>
+            获取样式表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.OnUnload(System.EventArgs)">
+            <summary>
+            在卸载页面之前保存住当前的状态
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.OnLoad(System.EventArgs)">
+            <summary>
+            在刚加载时，恢复其状态
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.RegisterColsFilter">
+            <summary>
+            将字段上的过滤条件添加到组
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.Dispose">
+            <summary>
+            由系统自动释放资源
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.IsVariable(System.String)">
+            <summary>
+            检查一个参数是否为内置的变量
+            </summary>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.ColStyle">
+            <summary>
+            各列的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.RowStyle">
+            <summary>
+            各行的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.Filter">
+            <summary>
+            过滤条件的组合
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.UserDefineStyle">
+            <summary>
+            用户自定义的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.Argument">
+            <summary>
+            用户自定义变量组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.DbConnection">
+            <summary>
+            数据链接
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.DbCommand">
+            <summary>
+            命令执行对象
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.SelectSql">
+            <summary>
+            用于读取数据的SQL语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.DeleteSql">
+            <summary>
+            用于删除数据的SQL语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.InsertSql">
+            <summary>
+            用于插入数据的SQL语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.UpdateSql">
+            <summary>
+            用于更新数据的SQL语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.ItemCountSql">
+            <summary>
+            用于读取数据库中有多少条记录
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.TableName">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.SelectedRows">
+            <summary>
+            已经选定的行
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.Event">
+            <summary>
+            汇总屏事件组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.EditMessage">
+            <summary>
+            对汇总屏的编辑信息
+            </summary>
+        </member>
+        <member name="E:Skyever.Report.ReportCell.OnReadData">
+            <summary>
+            在读取数据之前发生，返回非空，则不再启用控件内置的读取数据的功能
+            </summary>
+        </member>
+        <member name="E:Skyever.Report.ReportCell.OnCellCommand">
+            <summary>
+            从客户端传过来的事件
+            </summary>
+        </member>
+        <member name="E:Skyever.Report.ReportCell.OnItemShow">
+            <summary>
+            在显示每条记录之前触发
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.CurPageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.IsKeepState">
+            <summary>
+            是否针对每个用户保持住当前页码
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.PageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.ItemCount">
+            <summary>
+            记录的条数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.PageVolume">
+            <summary>
+            每页显示的条数，设置为0表示不分页
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.TableStyle">
+            <summary>
+            表格框架的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.HeadStyle">
+            <summary>
+            页眉的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.FootStyle">
+            <summary>
+            页脚的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.BodyStyle">
+            <summary>
+            表体的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.Item(System.String)">
+            <summary>
+            在显示每条记录的时候，读取当前行要显示的记录
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.UBB">
+            <summary>
+            支持UBB代码的缓存对象
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ReportCell.CommitMessageItemType">
+            <summary>
+            编辑信息的类型
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ReportCell.CommitMessageItemType.NoChange">
+            <summary>
+            无变化
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ReportCell.CommitMessageItemType.Update">
+            <summary>
+            已更改
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ReportCell.CommitMessageItemType.Insert">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ReportCell.CommitMessageItemType.Delete">
+            <summary>
+            已删除
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ReportCell.CommitMessageItem">
+            <summary>
+            用于组织编辑信息的类
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.CommitMessageItem.#ctor(System.String,Skyever.Report.ReportCell.CommitMessageItemType)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="RowFlag">行标识</param>
+            <param name="RowState">编辑类型</param>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.CommitMessageItem.Append(System.String,System.Object)">
+            <summary>
+            增加一个值项
+            </summary>
+            <param name="ColName"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.CommitMessageItem.Append(System.String,System.Object,System.Object)">
+            <summary>
+            增加一个值项
+            </summary>
+            <param name="ColName"></param>
+            <param name="Value"></param>
+            <param name="NewValue"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportCell.CommitMessageItem.Remove(System.String)">
+            <summary>
+            删除一个值项
+            </summary>
+            <param name="ColName"></param>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.CommitMessageItem.RowState">
+            <summary>
+            进行的操作
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.CommitMessageItem.RowFlag">
+            <summary>
+            行标识
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.CommitMessageItem.Item(System.String)">
+            <summary>
+            按索引访问值项
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ReportCell.CommitMessageItem.ItemValue">
+            <summary>
+            值的列表
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.CommitMessageItem.ItemValue.ColName">
+            <summary>
+            字段名
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.CommitMessageItem.ItemValue.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportCell.CommitMessageItem.ItemValue.NewValue">
+            <summary>
+            新值
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ReportCell.KeepPageState">
+            <summary>
+            ReportCell：保持住页面的状态
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ColStyle">
+            <summary>
+            ReportCell：报表项的样式
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ColStyle.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ColStyle.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="Name">列名</param>
+            <param name="Pattern">样式</param>
+        </member>
+        <member name="M:Skyever.Report.ColStyle.FormatArguments">
+            <summary>
+            规范格式化字符串和参数表
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.FormatString">
+            <summary>
+            格式化字符串
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.Striking">
+            <summary>
+            醒目的标题
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.ArrStriking">
+            <summary>
+            醒目的标题
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.ClassName">
+            <summary>
+            样式表名字，默认为字段名
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.Values">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.Value">
+            <summary>
+            列名数组，作为格式化字符串的参数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.Name">
+            <summary>
+            字段名
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.IsShow">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.Group">
+            <summary>
+            所属样式组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.Filter">
+            <summary>
+            过滤条件格式化字符串
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.IsSupportUBB">
+            <summary>
+            是否支持UBB代码
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.Width">
+            <summary>
+            该列的宽度
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.IsMergeSameRow">
+            <summary>
+            是否合并相同值的相邻行
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.IsMergeNullRow">
+            <summary>
+            是否将空行也视为同值行
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.IsMergeFollowPrevious">
+            <summary>
+            是否在前一列同值的情况下，该列才判断是否为同值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.MergeSameRowMsg">
+            <summary>
+            用于提供合并同值行的一些信
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.GroupTitle">
+            <summary>
+            为相邻的几列提供统一的标题
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.EditControl">
+            <summary>
+            在编辑状态下，列编辑控件的名字，可选 inputbox、listbox、checkbox、radiobox、userdefine
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.EditControlType">
+            <summary>
+            可编辑控件的属性（类似于HTML的属性）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.EditControlData">
+            <summary>
+            可编辑控件的信息
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyle.DbType">
+            <summary>
+            字段的类型
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ColStyle.MergeSameRowMessage">
+            <summary>
+            用于提供合并同值行的一些信息
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ColStyle.MergeSameRowMessage.RowSpan">
+            <summary>
+            用于记录相同值行的数量
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ColStyle.MergeSameRowMessage.SameValue">
+            <summary>
+            用于记录相同的值
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ColStyle.MergeSameRowMessage.Postion">
+            <summary>
+            用于记录生成HTML代码中RowSpan属性值的位置，以便进行回填
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ColStyleGroup">
+            <summary>
+            ReportCell：列的样式组
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ColStyleGroup.Append(Skyever.Report.ColStyle)">
+            <summary>
+            增加样式
+            </summary>
+            <param name="NewStyle">样式</param>
+        </member>
+        <member name="M:Skyever.Report.ColStyleGroup.Remove(System.String)">
+            <summary>
+            删除样式
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ColStyleGroup.GetStyleKeys">
+            <summary>
+            获取样式键值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ColStyleGroup.GetItemStyle(System.String)">
+            <summary>
+            获取指定列元素样式
+            </summary>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ColStyleGroup.GetKeys">
+            <summary>
+            获取键值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.ColStyleGroup.Item(System.String)">
+            <summary>
+            用索引读取列样式项
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyleGroup.It">
+            <summary>
+            增加字段样式，（方便在ASPX页面中的操作）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyleGroup.Style">
+            <summary>
+            列中各元素的样式，（方便在ASPX页面中的操作）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyleGroup.Pattern">
+            <summary>
+            各列的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyleGroup.IsAutoShow">
+            <summary>
+            是否自动显示字段
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ColStyleGroup.IsEditable">
+            <summary>
+            是否允许编辑
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.RowStyle">
+            <summary>
+            ReportCell：行的样式
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.RowStyle.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.RowStyle.#ctor(System.Int32,System.String)">
+            <summary>
+            行的样式
+            </summary>
+            <param name="Index">序号</param>
+            <param name="Pattern">样式</param>
+        </member>
+        <member name="P:Skyever.Report.RowStyle.Index">
+            <summary>
+            行的序列号
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyle.ClassName">
+            <summary>
+            行的样式名
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.RowStyleGroup">
+            <summary>
+            ReportCell：行的样式组
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.RowStyleGroup.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.RowStyleGroup.Append(Skyever.Report.RowStyle)">
+            <summary>
+            增加行样式
+            </summary>
+            <param name="NewStyle">样式</param>
+        </member>
+        <member name="M:Skyever.Report.RowStyleGroup.Remove(System.Int32)">
+            <summary>
+            删除行样式
+            </summary>
+            <param name="index">序号</param>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.Item(System.Int32)">
+            <summary>
+            按索引读取样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.Style">
+            <summary>
+            增加字段样式，（方便在ASPX页面中的操作）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.It">
+            <summary>
+            增加字段样式，（方便在ASPX页面中操作）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.DifferentRow">
+            <summary>
+            规定有多少种不同的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.Flag">
+            <summary>
+            列的格式化字符串
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.Value">
+            <summary>
+            值字段
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.IsMulCheckable">
+            <summary>
+            是否允许多行选择
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.IsShowCheckBox">
+            <summary>
+            是否在每行开头显示复选框
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.IsShow">
+            <summary>
+            是否显示当前行（在OnItemShow事件中可以控制当前行的显示与否）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.Pattern">
+            <summary>
+            各行的样式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.Height">
+            <summary>
+            指定行的高度
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.UserDefineRow">
+            <summary>
+            用户自定义行的组合
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.RowStyleGroup.NewRow">
+            <summary>
+            添加用户自定义行
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.UserDefineCell">
+            <summary>
+            用户自定义单元格
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UserDefineCell.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineCell.Name">
+            <summary>
+            单元格的名字
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineCell.Value">
+            <summary>
+            单元格的值（可以是表达式）
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.UserDefineRow">
+            <summary>
+            用户自定义行（单元格的组合）
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UserDefineRow.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UserDefineRow.Append(Skyever.Report.UserDefineCell)">
+            <summary>
+            添加一项
+            </summary>
+            <param name="myUserDefineCell"></param>
+        </member>
+        <member name="M:Skyever.Report.UserDefineRow.Remove(System.String)">
+            <summary>
+            删除指定的项
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRow.Name">
+            <summary>
+            行的名字
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRow.Item(System.String)">
+            <summary>
+            按索引访问组中的行
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRow.It">
+            <summary>
+            方便在ASPX文件中添加项
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRow.Cell">
+            <summary>
+            方便在ASPX文件中添加项
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRow.IsShowAtTop">
+            <summary>
+            显示的位置位置（默认为在底端显示）
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.UserDefineRowGroup">
+            <summary>
+            用户自定义行的组合
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UserDefineRowGroup.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UserDefineRowGroup.Append(Skyever.Report.UserDefineRow)">
+            <summary>
+            添加一项
+            </summary>
+            <param name="myUserDefineRow"></param>
+        </member>
+        <member name="M:Skyever.Report.UserDefineRowGroup.Remove(System.String)">
+            <summary>
+            删除指定的项
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRowGroup.Item(System.String)">
+            <summary>
+            按索引访问组中的行
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRowGroup.IsShowAtTop">
+            <summary>
+            显示的位置位置（默认为在底端显示）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRowGroup.It">
+            <summary>
+            方便在ASPX文件中添加项
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRowGroup.NewRow">
+            <summary>
+            方便在ASPX文件中添加项
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UserDefineRowGroup.Pattern">
+            <summary>
+            行的样式
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.PartStyle">
+            <summary>
+            ReportCell：表格各部分的样式
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.PartStyle.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.PartStyle.IsShow">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.PartStyle.HeadText">
+            <summary>
+            小标题
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.PartStyle.Caption">
+            <summary>
+            大标题
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.HeadStyle">
+            <summary>
+            标题样式
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.HeadStyle.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.HeadStyle.IsShowTitle">
+            <summary>
+            是否显示标题
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.TableStyle">
+            <summary>
+            表格样式
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.TableStyle.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.Border">
+            <summary>
+            表格线的宽度
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.CellPadding">
+            <summary>
+            表格线与内容之间的空间
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.CellSpacing">
+            <summary>
+            表格线之间的空间
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.ClassName">
+            <summary>
+            样式名
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.BorderColor">
+            <summary>
+            边框的颜色
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.Align">
+            <summary>
+            表格的对齐方式
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.Width">
+            <summary>
+            表格的宽度
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.IsCollapse">
+            <summary>
+            是否折叠表格线（默认为不折叠）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.IsAutoLayout">
+            <summary>
+            是否启用自动布局（默认为启用）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.TableStyle.IsSelectable">
+            <summary>
+            是否允许选择文本
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.FilterItem">
+            <summary>
+            ReportCell：过滤条件
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FilterItem.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FilterItem.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="Name">过滤条件的名字</param>
+            <param name="Filter">过滤条件表达式</param>
+        </member>
+        <member name="M:Skyever.Report.FilterItem.FormatFilterText">
+            <summary>
+            分析处理过滤条件字符串
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FilterItem.FixFilter(System.Text.RegularExpressions.Match)">
+            <summary>
+            操作过滤条件的项
+            </summary>
+            <param name="myMatch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.FilterItem.GetFilterString">
+            <summary>
+            获取当前过滤条件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.FilterItem.GetFilterItemValue(System.Text.RegularExpressions.Match)">
+            <summary>
+            确定过滤条件中每一项的值
+            </summary>
+            <param name="myMatch"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.FilterItem.Name">
+            <summary>
+            字段的名字
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FilterItem.Filter">
+            <summary>
+            过滤条件格式化字符串
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FilterItem.Group">
+            <summary>
+            所属过滤条件组
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.FilterGroup">
+            <summary>
+            ReportCell：过滤条件组
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.Append(Skyever.Report.FilterItem)">
+            <summary>
+            增加一项过滤条件
+            </summary>
+            <param name="myFilter"></param>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.Append(System.String,System.String)">
+            <summary>
+            增加一项过滤条件
+            </summary>
+            <param name="Name"></param>
+            <param name="Filter"></param>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.Append(System.String)">
+            <summary>
+            增加一项过滤条件
+            </summary>
+            <param name="Filter"></param>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.Append(System.Boolean)">
+            <summary>
+            设置一项过滤条件，如果设置为false则会增加过滤条件"1=0"，否则会增加过滤条件"1=1"
+            </summary>
+            <param name="IsFilter"></param>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.Remove(System.String)">
+            <summary>
+            删除过滤条件
+            </summary>
+            <param name="Name"></param>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.GetFilterValue(System.String)">
+            <summary>
+            得到指定名字的过滤条件值
+            </summary>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.SetFilterValue(System.String,System.Object)">
+            <summary>
+            设置指定名字的过滤项的值
+            </summary>
+            <param name="Name"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.GetFilters">
+            <summary>
+            获取所有过滤条件的集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.GetFilterValueKeys">
+            <summary>
+            得到所有过滤条件值的键
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.FilterGroup.GetFilterString">
+            <summary>
+            得到过滤条件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.FilterGroup.Item(System.String)">
+            <summary>
+            按索引读取过滤条件的值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FilterGroup.IsFilterChange">
+            <summary>
+            过滤条件是否改变
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FilterGroup.It">
+            <summary>
+            方便在ASPX文件中增加过滤条件
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FilterGroup.Count">
+            <summary>
+            过滤条件组中的数目
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.Event">
+            <summary>
+            ReportCell：注册各种事件
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.Event.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Event.Name">
+            <summary>
+            事件名字
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Event.Function">
+            <summary>
+            事件要执行的函数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Event.FunctionBody">
+            <summary>
+            函数体
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Event.Language">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.EventGroup">
+            <summary>
+            ReportCell：事件组
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.EventGroup.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.EventGroup.Append(Skyever.Report.Event)">
+            <summary>
+            添加一项
+            </summary>
+            <param name="myEvent"></param>
+        </member>
+        <member name="M:Skyever.Report.EventGroup.Remove(System.String)">
+            <summary>
+            删除指定的项
+            </summary>
+            <param name="Key"></param>
+        </member>
+        <member name="P:Skyever.Report.EventGroup.Item(System.String)">
+            <summary>
+            按索引访问组中的事件
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.EventGroup.It">
+            <summary>
+            方便在ASPX文件中添加项
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.OnReadData">
+            <summary>
+            ReportCell：在读取数据之前发生，返回非空，则不再启用内置的读取功能
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.OnCellCommand">
+            <summary>
+            ReportCell：从客户端传过来的事件
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.OnItemShow">
+            <summary>
+            ReportCell：在每行显示之前触发
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ReportCellOption">
+            <summary>
+            汇总屏的样式设置
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportCellOption.ReadXml(System.String)">
+            <summary>
+            从XML文件中读取设置
+            </summary>
+            <param name="FileName"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportCellOption.WriteXml(System.String)">
+            <summary>
+            将当前的设置写入XML文件
+            </summary>
+            <param name="FileName"></param>
+        </member>
+        <member name="T:Skyever.Report.ReportDetail">
+            <summary>
+            细节屏：功能强大且灵活的对数据库记录进行操作的控件
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.ExplainValues">
+            <summary>
+            将表达式转换为实际的值
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.AppendParameters">
+            <summary>
+            增加参数
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ReportDetail.DbConType">
+            <summary>
+            数据链接类型
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.ReportDetail.FindArgument">
+            <summary>
+            寻找参数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.ReplaceSub(System.Text.RegularExpressions.Match)">
+            <summary>
+            根据寻找到的参数，增加实际的值ss
+            </summary>
+            <param name="myMatch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.CopyParameter(System.Data.IDbDataParameter)">
+            <summary>
+            复制一个参数对象
+            </summary>
+            <param name="myIDbDataParameter"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Skyever.Report.ReportDetail.IsMatchGetValue">
+            <summary>
+            是否为查询语句
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.AttachSql(System.String)">
+            <summary>
+            分析SQL语句，是存储过程还是SQL，并进行相应的操作
+            </summary>
+            <param name="Sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.Select">
+            <summary>
+            读取数据（从数据库）
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.Insert">
+            <summary>
+            插入数据
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.Update">
+            <summary>
+            更新数据
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.Delete">
+            <summary>
+            删除数据
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.Execute">
+            <summary>
+            强制细节屏执行操作
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.OnInit(System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.InitializeComponent">
+            <summary>
+            	设计器支持所需的方法 - 不要使用代码编辑器
+            	修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.OnPreRender(System.EventArgs)">
+            <summary>
+            在输出之前注释一些细节屏的信息
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.ExplainHtml(System.String)">
+            <summary>
+            解释带参数的HTML代码
+            </summary>
+            <param name="Content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.ExplainArgument(System.String)">
+            <summary>
+            解释带参数的字符串
+            </summary>
+            <param name="Content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.GetContent">
+            <summary>
+            获取向客户端输出的内容
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Skyever.Report.ReportDetail.Content">
+            <summary>
+            向客户端输出的内容
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.GetStyle">
+            <summary>
+            获取样式表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            向客户端输出信息
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.AddUserDefineComponent(System.String)">
+            <summary>
+            增加对用户自定义组件的支持
+            </summary>
+            <param name="InnerHtml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.GetOldValue(System.String)">
+            <summary>
+            读取数据库中先前存在的值
+            </summary>
+            <param name="FieldName">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.GetNewValue(System.String)">
+            <summary>
+            读取新赋予的值
+            </summary>
+            <param name="FieldName">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.SetNewValue(System.String,System.Object)">
+            <summary>
+            设置指定字段的值
+            </summary>
+            <param name="FieldName"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Skyever.Report.ReportDetail.RefreshKeyFlag">
+            <summary>
+            记录是否对主键已重新赋值，如果重新赋值，则重新读取所有数据
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.Reset">
+            <summary>
+            将细节屏复原为添加记录的状态
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.GetOldValues">
+            <summary>
+            在更新、删除记录之前，首先读取数据库中已经存在的值。
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.ResetFieldValues">
+            <summary>
+            重置所有的值，只在更新状态和删除状态中才有效
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportDetail.Dispose">
+            <summary>
+            由系统自动释放资源
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.IsUpdateState">
+            <summary>
+            是否为更新状态
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.Catch">
+            <summary>
+            上一个操作受影响的行数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.Layout">
+            <summary>
+            所应用的页面布局名
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.CurLayoutState">
+            <summary>
+            当前所用的页面布局
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.DbConnection">
+            <summary>
+            数据链接对象
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.DbCommand">
+            <summary>
+            命令执行对象
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.Fields">
+            <summary>
+            字段属性组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.Layouts">
+            <summary>
+            页面布局组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.Argument">
+            <summary>
+            用户自定义变量组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.UserDefineStyle">
+            <summary>
+            用户自定义样式组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.Item(System.String)">
+            <summary>
+            以索引形式读取或设置各字段的值
+            </summary>
+        </member>
+        <member name="E:Skyever.Report.ReportDetail.OnBeforeOutput">
+            <summary>
+            在向客户端输出内容之前发生，返回空表示不再向客户端输出内容
+            </summary>
+        </member>
+        <member name="E:Skyever.Report.ReportDetail.OnBeforeOperate">
+            <summary>
+            在对数据进行读取、插入、更新、删除之前发生，返回false表示不再执行默认操作
+            </summary>
+        </member>
+        <member name="E:Skyever.Report.ReportDetail.OnAfterOperate">
+            <summary>
+            在对数据进行读取、插入、更新、删除之后发生，此时事务尚未提交，返回false将回滚事务
+            </summary>
+        </member>
+        <member name="E:Skyever.Report.ReportDetail.OnDetailCommand">
+            <summary>
+            从客户端传过来的事件
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.ReportDetail.UBB">
+            <summary>
+            支持UBB代码的缓存对象
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.FieldAttrib">
+            <summary>
+            ReportDetail：字段的属性
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.#ctor(System.String,System.Data.DbType)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="Name">字段名字</param>
+            <param name="DbType">字段类型</param>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.SetDbType(System.Enum)">
+            <summary>
+            设置字段类型
+            </summary>
+            <param name="dbType"></param>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.GetDefaultValue">
+            <summary>
+            获取默认值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.GetValue">
+            <summary>
+            获取设定值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.GetParameter">
+            <summary>
+            获取参数对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Skyever.Report.FieldAttrib.TrueFormatString">
+            <summary>
+            记录原始格式化字符串（{year}-{month}-{day}等）
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.SelectArguments">
+            <summary>
+            执行格式化
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.ReplaceArgument(System.Text.RegularExpressions.Match)">
+            <summary>
+            执行格式化的时候，替换字符串的具体操作
+            </summary>
+            <param name="myMatch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.FieldAttrib.ReplaceArgument2(System.Text.RegularExpressions.Match)">
+            <summary>
+            扫行格式化的时候，替换字符串的具体要求
+            </summary>
+            <param name="myMatch"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.Name">
+            <summary>
+            字段名
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.Title">
+            <summary>
+            字段的别名
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.DbType">
+            <summary>
+            字段类型
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.Size">
+            <summary>
+            字段长度
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.Verification">
+            <summary>
+            验证码，以正则表达式形式表示
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.ErrorMsg">
+            <summary>
+            错误信息，当验证错误的时候将会以对话框形式弹出该消息
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.IsKey">
+            <summary>
+            是否为主键
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.IsUpdateable">
+            <summary>
+            是否允许更改
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.IsNullable">
+            <summary>
+            是否允许空值，默认为允许
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.Value">
+            <summary>
+            字段的默认值，字符串形式表示，提供在ASPX页面中直接赋值，请勿在代码页中直接使用
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.TrueValue">
+            <summary>
+            获取带格式化序列的真值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.Parameter">
+            <summary>
+            根据数据链接类型创建参数对象
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.IsSupportUBB">
+            <summary>
+            是否支持UBB代码
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.Group">
+            <summary>
+            所属参数组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.OldValue">
+            <summary>
+            先前的值，即在更新、删除时，数据库中先前存在的值
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttrib.FormatString">
+            <summary>
+            记录标准格式化字符串{0}-{1}
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.FieldAttribGroup">
+            <summary>
+            ReportDetail：字段属性的组合
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FieldAttribGroup.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.FieldAttribGroup.Append(Skyever.Report.FieldAttrib)">
+            <summary>
+            增加一个属性
+            </summary>
+            <param name="newValue">新属性</param>
+        </member>
+        <member name="M:Skyever.Report.FieldAttribGroup.Remove(System.String)">
+            <summary>
+            删除一个属性
+            </summary>
+            <param name="Name"></param>
+        </member>
+        <member name="M:Skyever.Report.FieldAttribGroup.GetKeyFields">
+            <summary>
+            得到主键字段的集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.FieldAttribGroup.Item(System.String)">
+            <summary>
+            按索引读取属性
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttribGroup.Field">
+            <summary>
+            增加一个属性
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttribGroup.It">
+            <summary>
+            增加一个属性
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttribGroup.ConnectionType">
+            <summary>
+            数据链接类别
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttribGroup.DbType">
+            <summary>
+            参数类型的类型
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.FieldAttribGroup.ParameterType">
+            <summary>
+            参数对象的类型
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.LayoutState">
+            <summary>
+            ReportDetail：页面布局
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.LayoutState.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutState.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutState.SelectSql">
+            <summary>
+            读取数据时所用的语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutState.InsertSql">
+            <summary>
+            执行插入时所用的语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutState.UpdateSql">
+            <summary>
+            执行更新时所用的语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutState.DeleteSql">
+            <summary>
+            执行删除时所用的语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutState.Group">
+            <summary>
+            属于哪一个组
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutState.IsSupportUBB">
+            <summary>
+            该布局是否将UBB字段格式化为HTML代码
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.LayoutStateGroup">
+            <summary>
+            ReportDetail：页面布局的组合
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.LayoutStateGroup.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.LayoutStateGroup.Append(Skyever.Report.LayoutState)">
+            <summary>
+            增加一项布局
+            </summary>
+            <param name="NewLayoutState">新布局</param>
+        </member>
+        <member name="M:Skyever.Report.LayoutStateGroup.Remove(System.String)">
+            <summary>
+            删除一项布局
+            </summary>
+            <param name="Name"></param>
+        </member>
+        <member name="P:Skyever.Report.LayoutStateGroup.Item(System.String)">
+            <summary>
+            按照索引读取页面布局
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutStateGroup.Layout">
+            <summary>
+            增加一项布局（方便在ASPX中添加项）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutStateGroup.It">
+            <summary>
+            增加一项布局（方便在ASPX中添加项）
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutStateGroup.DefaultLayout">
+            <summary>
+            默认布局
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutStateGroup.SelectSql">
+            <summary>
+            读取数据时所用的语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutStateGroup.InsertSql">
+            <summary>
+            执行插入时所用的语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutStateGroup.UpdateSql">
+            <summary>
+            执行更新时所用的语句
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.LayoutStateGroup.DeleteSql">
+            <summary>
+            执行删除时所用的语句
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.OnBeforeOutput">
+            <summary>
+            ReportDetail：在向客户端输出HTML代码之前发生
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.OnDetailOperate">
+            <summary>
+            ReportDetail：在对数据进行读取、插入、更新、删除之前和之后发生的事件
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.OnDetailCommand">
+            <summary>
+            ReportDetail：从客户端传过来的事件
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.Operate">
+            <summary>
+            ReportDetail：对数据的各种操作
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.Operate.Select">
+            <summary>
+            读取
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.Operate.Insert">
+            <summary>
+            插入
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.Operate.Update">
+            <summary>
+            更新
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.Operate.Delete">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.Operate.Reset">
+            <summary>
+            重置
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.Operate.None">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.ReportException">
+            <summary>
+            汇总屏和细节屏产生的异常信息
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportException.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.ReportException.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="Message">消息</param>
+        </member>
+        <member name="M:Skyever.Report.ReportException.#ctor(System.String,System.Exception)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="Message">消息</param>
+            <param name="e">引发该异常的异常</param>
+        </member>
+        <member name="T:Skyever.Report.Tools">
+            <summary>
+            提供一些公共的功能
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.Tools.GroupValues(System.Collections.ICollection,System.Boolean)">
+            <summary>
+            组合集合中的值，用逗号分隔开来，以适应于SQL语句中的“in”条件
+            </summary>
+            <param name="myICollection">集合</param>
+            <param name="isNeedQuot">是否需要加上引号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.Tools.GroupOptions(System.Data.IDataReader)">
+            <summary>
+            组合成SELECT控件中的OPTION格式
+            </summary>
+            <param name="myReader"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.Tools.IsNull(System.Object)">
+            <summary>
+            判断是否为空值
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.Tools.MatchArgument">
+            <summary>
+            用于匹配大括号中的内容
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.UBB">
+            <summary>
+            支持UBB代码，提供UBB到HTML的转换功能和缓存功能
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UBB.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UBB.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="MaxItem">所允许最大缓存数</param>
+        </member>
+        <member name="M:Skyever.Report.UBB.GetHtmlCode(System.String)">
+            <summary>
+            获取指定UBB字符串的HTML代码
+            </summary>
+            <param name="UBBStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.UBB.GetHtmlCodeForUBB(System.String)">
+            <summary>
+            获取指定UBB字符串的HTML代码
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.UBB.ReplaceUBBTag(System.Text.RegularExpressions.Match)">
+            <summary>
+            为UBB标记提供替换的方法
+            </summary>
+            <param name="myMatch"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Skyever.Report.UBB.MaxItem">
+            <summary>
+            所允许的最大缓存数
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.UBB.IsSupportHtmlTag">
+            <summary>
+            是否支持HTML格式的标记，形如：[html:div style="width:500px"]我爱北京天安门[/html:div]
+            </summary>
+        </member>
+        <member name="E:Skyever.Report.UBB.OnReplaceUBBTag">
+            <summary>
+            在转换UBB标记时，规定自己的转换方法，如果返回null则使用默认的转换方法
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.OnReplaceUBBTag">
+            <summary>
+            UBB：在转换UBB标记时，规定自己的转换方法，如果返回null则使用默认的转换方法
+            </summary>
+        </member>
+        <member name="T:Skyever.Report.Script">
+            <summary>
+            用于保存一些客户端脚本，并实现脚本的转换等工作
+            </summary>
+        </member>
+        <member name="F:Skyever.Report.Script.ReplaceScript">
+            <summary>
+            用于将脚本的空格去除
+            </summary>
+        </member>
+        <member name="M:Skyever.Report.Script.SendScriptFile(System.String,System.String)">
+            <summary>
+            向客户端发送脚本
+            </summary>
+            <param name="FileName"></param>
+            <param name="Script"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Skyever.Report.Script.GetScript(System.Boolean@,System.String@,System.String,System.Boolean@)">
+            <summary>
+            对细节屏脚本的访问
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Script.ReportCellOperateScript">
+            <summary>
+            对汇总屏脚本的访问
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Script.ReportDetailOperateScript">
+            <summary>
+            对细节屏脚本的访问
+            </summary>
+        </member>
+        <member name="P:Skyever.Report.Script.ReportMenuOperateScript">
+            <summary>
+            对汇总屏脚本的访问
+            </summary>
+        </member>
+    </members>
+</doc>

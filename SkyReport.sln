@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyReport", "SkyReport.csproj", "{09393D96-CDC9-4D2A-B4FA-125BAA3B9D0E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{09393D96-CDC9-4D2A-B4FA-125BAA3B9D0E}.Debug.ActiveCfg = Debug|.NET
+		{09393D96-CDC9-4D2A-B4FA-125BAA3B9D0E}.Debug.Build.0 = Debug|.NET
+		{09393D96-CDC9-4D2A-B4FA-125BAA3B9D0E}.Release.ActiveCfg = Release|.NET
+		{09393D96-CDC9-4D2A-B4FA-125BAA3B9D0E}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
